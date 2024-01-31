@@ -36,14 +36,17 @@ func main() {
 		return
 	}
 
+	// Инициализация роутера
+	router := handler.InitRouter()
+
 	// Порт для HTTP-сервера
 	port := 8082
 	fmt.Printf("Сервер запущен на порту %d...\n", port)
 
-	// Создаем объект http.Server
+	// Создаем объект http.Server с установленным роутером
 	server := &http.Server{
 		Addr:    fmt.Sprintf(":%d", port),
-		Handler: nil,
+		Handler: router,
 	}
 
 	// Канал для сигналов завершения работы приложения
